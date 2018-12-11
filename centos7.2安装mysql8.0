@@ -1,0 +1,21 @@
+
+清理原有的mysql：
+rpm -qa | grep mysql
+yum remove mysql-xxx-xxx-
+rpm -qa | grep mariadb
+yum remove mariadb-xxx-xxx-
+find / -name mysql
+rm -rf /var/lib/mysql
+yum仓库下载MySQL：sudo yum localinstall https://repo.mysql.com//mysql80-community-release-el7-1.noarch.rpm
+yum安装MySQL：sudo yum install mysql-community-server
+启动MySQL服务：sudo service mysqld start
+检查MySQL服务状态：sudo service mysqld status
+查看初始密码（如无内容直接跳过）：sudo grep 'temporary password' /var/log/mysqld.log
+本地MySQL客户端登录：mysql -uroot -p
+输入密码为第5步查出的，如果没有，直接回车，然后输入命令  flush privileges
+修改root登录密码：ALTER USER 'root'@'localhost' IDENTIFIED BY '密码';（注意要切换到mysql数据库，使用use mysql）
+select user,host from user
+update user set host = '%' where user ='root';
+show global variables like 'port';
+select host,user,plugin,authentication_string from mysql.user;
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'newpassword';
