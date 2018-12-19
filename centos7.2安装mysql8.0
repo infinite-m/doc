@@ -20,5 +20,5 @@ yum安装MySQL：sudo yum install mysql-community-server
 修改root的host属性以便远程连接
 select user,host from user
 update user set host = '%' where user ='root'
-select host,user,plugin,authentication_string from mysql.user;
-ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '新密码';
+select host,user,plugin,authentication_string from mysql.user
+alter user 'root'@'%' identified with mysql_native_password by '新密码'
